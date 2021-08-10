@@ -1,12 +1,16 @@
 import { AppBar, Toolbar, Box, Avatar, IconButton } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../redux/slices/themeHook';
+import {
+    useThemeDispatch,
+    useThemeSelector,
+} from '../../redux/slices/themeHook';
 import { toggleTheme } from '../../redux/slices/themeSlice';
 import useStyles from './Header.styles';
 
 const Header = () => {
     const classes = useStyles();
-    const dispatch = useAppDispatch();
+    const dispatch = useThemeDispatch();
+    const { darkMode } = useThemeSelector((state) => state.theme);
 
     return (
         <div className={classes.root}>
@@ -40,7 +44,14 @@ const Header = () => {
                     <Box flexGrow={1} />
                     <Box>
                         <IconButton onClick={() => dispatch(toggleTheme())}>
-                            <img src='./images/icon-sun.svg' alt='mode' />
+                            <img
+                                src={
+                                    darkMode
+                                        ? './images/icon-sun.svg'
+                                        : './images/icon-moon.svg'
+                                }
+                                alt='mode'
+                            />
                         </IconButton>
                     </Box>
                     <Box m={2}>
