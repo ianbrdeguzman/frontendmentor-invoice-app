@@ -10,9 +10,6 @@ const useStyles = makeStyles((theme: Theme) =>
             '&:hover': {
                 backgroundColor: 'rgb(124, 93, 250)',
             },
-            '&.MuiButton-label': {
-                width: '24px',
-            },
         },
         icon: {
             backgroundColor: 'white',

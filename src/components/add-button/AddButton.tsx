@@ -10,11 +10,9 @@ const AddButton = () => {
     return (
         <Button className={classes.button}>
             <AddIcon className={classes.icon} />
-            {size.width && size.width > 900 && (
-                <Typography variant='body2' className={classes.text}>
-                    New Invoice
-                </Typography>
-            )}
+            <Typography variant='body2' className={classes.text}>
+                New {size.width && size.width > 600 && <span>Invoice</span>}
+            </Typography>
         </Button>
     );
 };
