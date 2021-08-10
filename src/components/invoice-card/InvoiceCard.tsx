@@ -5,6 +5,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import moment from 'moment';
 import numeral from 'numeral';
 import useWindowSize from '../../hooks/useWindowSize';
+import { useHistory } from 'react-router-dom';
 
 interface ClientAddress {
     city: string;
@@ -43,7 +44,7 @@ interface IProps {
 
 const InvoiceCard: React.FC<IProps> = ({
     id,
-    createdAt,
+    paymentDue,
     clientName,
     total,
     status,
@@ -51,9 +52,15 @@ const InvoiceCard: React.FC<IProps> = ({
     const { darkMode } = useThemeSelector((state) => state.theme);
     const size = useWindowSize();
     const classes = useStyles({ darkMode, status });
+    const { push } = useHistory();
 
     return (
-        <Card elevation={0} key={id} className={classes.root}>
+        <Card
+            elevation={0}
+            key={id}
+            className={classes.root}
+            onClick={() => push(`/invoice/${id}`)}
+        >
             <CardContent className={classes.content}>
                 <Typography variant='body2' className={classes.id}>
                     <span className={classes.span}>#</span>
@@ -64,7 +71,7 @@ const InvoiceCard: React.FC<IProps> = ({
                     color='textSecondary'
                     className={classes.date}
                 >
-                    Due {moment(createdAt).format('DD MMM YYYY')}
+                    Due {moment(paymentDue).format('DD MMM YYYY')}
                 </Typography>
                 <Typography variant='body2' className={classes.name}>
                     {clientName}
@@ -76,7 +83,7 @@ const InvoiceCard: React.FC<IProps> = ({
                     <div className={classes.box}></div>
                     <Typography variant='body2'>{status}</Typography>
                 </Box>
-                {size.width && size.width > 900 && (
+                {size.width && size.width > 960 && (
                     <ChevronRightIcon
                         fontSize='small'
                         className={classes.icon}
