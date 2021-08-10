@@ -1,19 +1,24 @@
 import { useMemo } from 'react';
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import Invoice from './pages/Invoice';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Header from './components/header/Header';
-import { useAppSelector } from './redux/slices/themeHook';
+import { useThemeSelector } from './redux/slices/themeHook';
 
 const App = () => {
-    const { darkMode } = useAppSelector((state) => state.theme);
+    const { darkMode } = useThemeSelector((state) => state.theme);
     const theme = useMemo(
         () =>
             createTheme({
                 palette: {
                     type: darkMode ? 'dark' : 'light',
+                    background: {
+                        paper: darkMode ? '#141625' : '#f8f8fb',
+                    },
+                },
+                typography: {
+                    fontFamily: 'Spartan',
                 },
             }),
         [darkMode]
@@ -23,7 +28,6 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Router>
-                <Header />
                 <Switch>
                     <Route path='/invoice' component={Invoice} />
                     <Route path='/*' component={Home} />
