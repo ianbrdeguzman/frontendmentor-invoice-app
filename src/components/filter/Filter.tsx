@@ -38,13 +38,19 @@ const Filter = () => {
                 onClick={() => setOpen(!open)}
             >
                 <span className={classes.title}>Filter</span>
-                {size.width && size.width > 900 && (
+                {size.width && size.width > 600 && (
                     <span className={classes.title}>by status</span>
                 )}
                 {open ? (
-                    <KeyboardArrowUpIcon fontSize='small' />
+                    <KeyboardArrowUpIcon
+                        fontSize='small'
+                        className={classes.icon}
+                    />
                 ) : (
-                    <KeyboardArrowDownIcon fontSize='small' />
+                    <KeyboardArrowDownIcon
+                        fontSize='small'
+                        className={classes.icon}
+                    />
                 )}
             </Button>
             <Popper

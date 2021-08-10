@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme: Theme) =>
                 fontWeight: 'bold',
             },
         },
+        icon: {
+            color: 'rgb(124, 93, 250)',
+        },
         title: {
             fontSize: '12px',
         },
