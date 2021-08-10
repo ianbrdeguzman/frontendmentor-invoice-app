@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: theme.spacing(4),
             height: theme.spacing(4),
         },
-        box: {
+        logoContainer: {
             backgroundColor: 'rgb(124, 93, 250);',
             height: '100%',
             width: '90px',

@@ -24,7 +24,7 @@ const Header = () => {
                             position='absolute'
                             top='0'
                             left='0'
-                            className={classes.box}
+                            className={classes.logoContainer}
                         >
                             <img
                                 src='./images/logo.svg'
@@ -47,10 +47,10 @@ const Header = () => {
                             <img
                                 src={
                                     darkMode
-                                        ? './images/icon-sun.svg'
-                                        : './images/icon-moon.svg'
+                                        ? '/images/icon-sun.svg'
+                                        : '/images/icon-moon.svg'
                                 }
-                                alt='mode'
+                                alt='theme'
                             />
                         </IconButton>
                     </Box>
