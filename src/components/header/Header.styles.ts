@@ -2,7 +2,11 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {},
+        root: {
+            position: 'sticky',
+            top: 0,
+            zIndex: 10,
+        },
         appbar: {
             backgroundColor: 'rgb(30, 33, 57);',
             height: '80px',
