@@ -1,11 +1,11 @@
 import useStyles from './InvoiceCard.styles';
 import { Typography, Card, CardContent, Box } from '@material-ui/core';
-import { useThemeSelector } from '../../redux/slices/themeHook';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import moment from 'moment';
 import numeral from 'numeral';
 import useWindowSize from '../../hooks/useWindowSize';
 import { useHistory } from 'react-router-dom';
+import { useAppSelector } from '../../redux/store';
 
 interface ClientAddress {
     city: string;
@@ -28,7 +28,7 @@ interface SenderAddress {
     street: string;
 }
 
-interface IProps {
+export interface IProps {
     clientAddress: ClientAddress;
     clientEmail: string;
     clientName: string;
@@ -49,7 +49,7 @@ const InvoiceCard: React.FC<IProps> = ({
     total,
     status,
 }) => {
-    const { darkMode } = useThemeSelector((state) => state.theme);
+    const { darkMode } = useAppSelector((state) => state.theme);
     const size = useWindowSize();
     const classes = useStyles({ darkMode, status });
     const { push } = useHistory();

@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 import Home from './pages/home/Home';
-import Invoice from './pages/invoice/Invoice';
+import InvoicePage from './pages/invoice/Invoice';
+import Header from './components/header/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { useThemeSelector } from './redux/slices/themeHook';
-import Header from './components/header/Header';
+import { useAppSelector } from './redux/store';
 
 const App = () => {
-    const { darkMode } = useThemeSelector((state) => state.theme);
+    const { darkMode } = useAppSelector((state) => state.theme);
     const theme = useMemo(
         () =>
             createTheme({
@@ -34,7 +34,7 @@ const App = () => {
             <Router>
                 <Header />
                 <Switch>
-                    <Route path='/invoice/:id' component={Invoice} />
+                    <Route path='/invoice/:id' component={InvoicePage} />
                     <Route path='/*' component={Home} />
                 </Switch>
             </Router>

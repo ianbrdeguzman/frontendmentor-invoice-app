@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
             marginLeft: '0.2rem',
             fontSize: '12px',
             fontWeight: 'bold',
+            color: '#ffffff',
         },
     })
 );
