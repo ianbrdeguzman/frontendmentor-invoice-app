@@ -1,54 +1,21 @@
 import useStyles from './InvoiceCard.styles';
-import { Typography, Card, CardContent, Box } from '@material-ui/core';
+import { Typography, Card, CardContent } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import moment from 'moment';
 import numeral from 'numeral';
 import useWindowSize from '../../hooks/useWindowSize';
 import { useHistory } from 'react-router-dom';
 import { useAppSelector } from '../../redux/store';
+import { InvoiceCardProps } from '../../lib/types';
+import Status from '../status/Status';
 
-interface ClientAddress {
-    city: string;
-    country: string;
-    postCode: string;
-    street: string;
-}
-
-interface Items {
-    name: string;
-    price: number;
-    quantity: number;
-    total: number;
-}
-
-interface SenderAddress {
-    city: string;
-    country: string;
-    postCode: string;
-    street: string;
-}
-
-export interface IProps {
-    clientAddress: ClientAddress;
-    clientEmail: string;
-    clientName: string;
-    createdAt: string;
-    description: string;
-    id: string;
-    items: Items[];
-    paymentDue: string;
-    senderAddress: SenderAddress;
-    status: string;
-    total: number;
-}
-
-const InvoiceCard: React.FC<IProps> = ({
+const InvoiceCard = ({
     id,
     paymentDue,
     clientName,
     total,
     status,
-}) => {
+}: InvoiceCardProps) => {
     const { darkMode } = useAppSelector((state) => state.theme);
     const size = useWindowSize();
     const classes = useStyles({ darkMode, status });
@@ -79,10 +46,7 @@ const InvoiceCard: React.FC<IProps> = ({
                 <Typography className={classes.total}>
                     £{numeral(total).format('0,0.00')}
                 </Typography>
-                <Box className={classes.status}>
-                    <div className={classes.box}></div>
-                    <Typography variant='body2'>{status}</Typography>
-                </Box>
+                <Status status={status} />
                 {size.width && size.width > 960 && (
                     <ChevronRightIcon
                         fontSize='small'

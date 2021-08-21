@@ -8,17 +8,20 @@ interface Props {
 const useStyles = makeStyles<Theme, Props>((theme) =>
     createStyles({
         root: {
-            width: '90%',
             maxWidth: '780px',
-            margin: '1rem auto',
+            margin: '1rem',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
+            borderRadius: '.5rem',
             border: (props) =>
                 `1px solid ${props.darkMode ? '#1e2139' : '#ffffff'}`,
             backgroundColor: (props) =>
                 props.darkMode ? '#1e2139' : '#ffffff',
             '&:hover': {
                 border: '1px solid rgb(124, 93, 250)',
+            },
+            [theme.breakpoints.up('md')]: {
+                margin: '1rem auto',
             },
         },
         content: {
@@ -63,6 +66,7 @@ const useStyles = makeStyles<Theme, Props>((theme) =>
             color: 'rgb(126, 136, 195)',
         },
         total: {
+            marginRight: '1rem',
             fontWeight: 'bold',
             [theme.breakpoints.down('sm')]: {
                 gridArea: 'total',
@@ -114,6 +118,7 @@ const useStyles = makeStyles<Theme, Props>((theme) =>
         },
         icon: {
             color: 'rgb(124, 93, 250)',
+            marginLeft: '1rem',
         },
     })
 );

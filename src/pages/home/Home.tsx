@@ -6,7 +6,6 @@ import AddButton from '../../components/add-button/AddButton';
 import InvoiceCard from '../../components/invoice-card/InvoiceCard';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { fetchInvoices } from '../../redux/slices/invoiceSlice';
-import { Helmet } from 'react-helmet';
 
 const Home = () => {
     const classes = useStyles();
@@ -30,30 +29,25 @@ const Home = () => {
             <Typography variant='body1'>Error!</Typography>
         </Box>
     ) : (
-        <>
-            <Helmet>
-                <title>Frontend Mentor | Invoice App</title>
-            </Helmet>
-            <Paper square>
-                <Box className={classes.root}>
-                    <Box display='flex' className={classes.container}>
-                        <Box flexGrow='1' className={classes.header}>
-                            <Typography variant='h4' className={classes.title}>
-                                Invoices
-                            </Typography>
-                            <Typography variant='body2' color='textSecondary'>
-                                There are {invoices.length} total invoices
-                            </Typography>
-                        </Box>
-                        <Filter />
-                        <AddButton />
+        <Paper square>
+            <Box className={classes.root}>
+                <Box display='flex' className={classes.container}>
+                    <Box flexGrow='1' className={classes.header}>
+                        <Typography variant='h4' className={classes.title}>
+                            Invoices
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary'>
+                            There are {invoices.length} total invoices
+                        </Typography>
                     </Box>
-                    {invoices.map((invoice) => (
-                        <InvoiceCard key={invoice.id} {...invoice} />
-                    ))}
+                    <Filter />
+                    <AddButton />
                 </Box>
-            </Paper>
-        </>
+                {invoices.map((invoice) => (
+                    <InvoiceCard key={invoice.id} {...invoice} />
+                ))}
+            </Box>
+        </Paper>
     );
 };
 
