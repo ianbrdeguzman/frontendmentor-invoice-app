@@ -5,18 +5,20 @@ import Filter from '../../components/filter/Filter';
 import AddButton from '../../components/add-button/AddButton';
 import InvoiceCard from '../../components/invoice-card/InvoiceCard';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { setInvoices } from '../../redux/slices/invoiceSlice';
-import useFetch from '../../hooks/useFetch';
+import { fetchInvoices } from '../../redux/slices/invoiceSlice';
 
 const Home = () => {
     const classes = useStyles();
     const dispatch = useAppDispatch();
-    const { loading, data, error } = useFetch('/data/data.json');
-    const { invoices } = useAppSelector((state) => state.invoice);
+    const { invoices, loading, error } = useAppSelector(
+        (state) => state.invoice
+    );
 
     useEffect(() => {
-        dispatch(setInvoices(data));
-    }, [data, dispatch]);
+        if (invoices.length === 0) {
+            dispatch(fetchInvoices());
+        }
+    }, [invoices.length, dispatch]);
 
     return loading ? (
         <Box display='flex' justifyContent='center'>
