@@ -1,64 +1,47 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Invoice, InvoiceSlice } from '../../lib/types';
 
-// Define a type for the slice state
-interface ClientAddress {
-    city: string;
-    country: string;
-    postCode: string;
-    street: string;
-}
-
-interface Items {
-    name: string;
-    price: number;
-    quantity: number;
-    total: number;
-}
-
-interface SenderAddress {
-    city: string;
-    country: string;
-    postCode: string;
-    street: string;
-}
-
-interface Invoice {
-    clientAddress: ClientAddress;
-    clientEmail: string;
-    clientName: string;
-    createdAt: string;
-    description: string;
-    id: string;
-    items: Items[];
-    paymentDue: string;
-    senderAddress: SenderAddress;
-    status: string;
-    total: number;
-}
-
-export interface InvoiceSlice {
-    invoices: Invoice[];
-}
-
-// Define the initial state using that type
 const initialState: InvoiceSlice = {
+    loading: false,
+    error: undefined,
     invoices: [],
+    invoice: undefined,
 };
+
+export const fetchInvoices = createAsyncThunk(
+    'invoice/fetchInvoices',
+    async () => {
+        const response = await fetch('/data/data.json');
+        const data = await response.json();
+        return data as Invoice[];
+    }
+);
 
 export const invoiceSlice = createSlice({
     name: 'invoice',
-    // `createSlice` will infer the state type from the `initialState` argument
     initialState,
     reducers: {
-        setInvoices: (state, action: PayloadAction<Invoice[]>) => {
-            state.invoices = [...action.payload];
+        findInvoice: (state, action: PayloadAction<string>) => {
+            state.invoice = state.invoices.find(
+                (invoice) => invoice.id === action.payload
+            );
         },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchInvoices.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(fetchInvoices.fulfilled, (state, action) => {
+            state.loading = false;
+            state.invoices = action.payload;
+        });
+        builder.addCase(fetchInvoices.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        });
     },
 });
 
-export const { setInvoices } = invoiceSlice.actions;
-
-// // Other code such as selectors can use the imported `RootState` type
-// export const selectCount = (state: RootState) => state.counter.value;
+export const { findInvoice } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;
