@@ -1,9 +1,19 @@
 import { Box } from '@material-ui/core';
 import useStyles from './Address.styles';
 import { Address as AddressType } from '../../lib/types';
+import useWindowSize from '../../hooks/useWindowSize';
 
-const Address = ({ city, country, postCode, street }: AddressType) => {
-    const classes = useStyles();
+type AddressPropsType = AddressType & { position: string };
+
+const Address = ({
+    city,
+    country,
+    postCode,
+    street,
+    position,
+}: AddressPropsType) => {
+    const { width } = useWindowSize();
+    const classes = useStyles({ position, width });
     return (
         <address className={classes.root}>
             <Box component='span'>{street}</Box>

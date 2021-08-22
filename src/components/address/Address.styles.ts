@@ -1,6 +1,11 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles<Theme>((theme) =>
+interface Props {
+    position: string;
+    width: number | undefined;
+}
+
+const useStyles = makeStyles<Theme, Props>((theme) =>
     createStyles({
         root: {
             display: 'flex',
@@ -8,9 +13,10 @@ const useStyles = makeStyles<Theme>((theme) =>
             fontStyle: 'normal',
             color: 'rgba(255, 255, 255, 0.7);',
             gridArea: 'address',
-            '&:first-child': {
-                border: '1px solid red',
-            },
+            textAlign: (props) =>
+                props.width && props.width > 960 && props.position === 'right'
+                    ? 'right'
+                    : 'left',
         },
     })
 );

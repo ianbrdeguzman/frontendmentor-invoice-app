@@ -53,7 +53,9 @@ const InvoicePage = () => {
                             {invoice?.description}
                         </Typography>
                     </Grid>
-                    {invoice && <Address {...invoice.senderAddress} />}
+                    {invoice && (
+                        <Address {...invoice.senderAddress} position='right' />
+                    )}
                     <Grid item className={classes.dateContainer}>
                         <Box className={classes.createdDate}>
                             <Typography variant='body2' color='textSecondary'>
@@ -92,7 +94,12 @@ const InvoicePage = () => {
                         >
                             {invoice?.clientName}
                         </Typography>
-                        {invoice && <Address {...invoice.clientAddress} />}
+                        {invoice && (
+                            <Address
+                                {...invoice.clientAddress}
+                                position='left'
+                            />
+                        )}
                     </Grid>
                     <Grid item className={classes.emailContainer}>
                         <Typography variant='body2' color='textSecondary'>
