@@ -15,18 +15,21 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import useStyles from './Filter.styles';
 import useWindowSize from '../../hooks/useWindowSize';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { setFilter } from '../../redux/slices/invoiceSlice';
 
-const filters = ['All', 'Paid', 'Pending', 'Draft'];
+const filters = ['all', 'paid', 'pending', 'draft'];
 
 const Filter = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [filterValue, setFilterValue] = useState('All');
     const anchorRef = useRef<HTMLButtonElement>(null);
     const size = useWindowSize();
+    const { filter: filterValue } = useAppSelector((state) => state.invoice);
+    const dispatch = useAppDispatch();
 
     const handleFilterOnChange = (e: any) => {
-        setFilterValue(e.target.value);
+        dispatch(setFilter(e.target.value));
         setOpen(!open);
     };
 

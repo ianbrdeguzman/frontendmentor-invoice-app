@@ -10,7 +10,7 @@ import { fetchInvoices } from '../../redux/slices/invoiceSlice';
 const Home = () => {
     const classes = useStyles();
     const dispatch = useAppDispatch();
-    const { invoices, loading, error } = useAppSelector(
+    const { invoices, loading, error, filter } = useAppSelector(
         (state) => state.invoice
     );
 
@@ -43,9 +43,15 @@ const Home = () => {
                     <Filter />
                     <AddButton />
                 </Box>
-                {invoices.map((invoice) => (
-                    <InvoiceCard key={invoice.id} {...invoice} />
-                ))}
+                {filter !== 'all'
+                    ? invoices
+                          .filter((invoice) => invoice.status === filter)
+                          .map((invoice) => (
+                              <InvoiceCard key={invoice.id} {...invoice} />
+                          ))
+                    : invoices.map((invoice) => (
+                          <InvoiceCard key={invoice.id} {...invoice} />
+                      ))}
             </Box>
         </Paper>
     );

@@ -38,6 +38,7 @@ export interface InvoiceSlice {
     error: string | unknown;
     invoices: Invoice[];
     invoice: Invoice | undefined;
+    filter: string;
 }
 
 interface ClientAddress {

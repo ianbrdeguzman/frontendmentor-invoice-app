@@ -6,6 +6,7 @@ const initialState: InvoiceSlice = {
     error: undefined,
     invoices: [],
     invoice: undefined,
+    filter: 'all',
 };
 
 export const fetchInvoices = createAsyncThunk(
@@ -26,6 +27,9 @@ export const invoiceSlice = createSlice({
                 (invoice) => invoice.id === action.payload
             );
         },
+        setFilter: (state, action: PayloadAction<string>) => {
+            state.filter = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchInvoices.pending, (state) => {
@@ -42,6 +46,6 @@ export const invoiceSlice = createSlice({
     },
 });
 
-export const { findInvoice } = invoiceSlice.actions;
+export const { findInvoice, setFilter } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;

@@ -3,7 +3,10 @@ import Home from './pages/home/Home';
 import InvoicePage from './pages/invoice/Invoice';
 import Header from './components/header/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import {
+    ThemeProvider,
+    unstable_createMuiStrictModeTheme as createTheme,
+} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { useAppSelector } from './redux/store';
 
@@ -22,6 +25,7 @@ const App = () => {
                     fontFamily: 'Spartan',
                     body2: {
                         fontSize: '12px',
+                        textTransform: 'capitalize',
                     },
                 },
             }),
