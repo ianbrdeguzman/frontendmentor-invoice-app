@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: 0,
             '& p': {
                 fontSize: '12px',
+                textTransform: 'capitalize',
             },
         },
         radio: {

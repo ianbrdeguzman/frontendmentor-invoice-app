@@ -25,7 +25,6 @@ const App = () => {
                     fontFamily: 'Spartan',
                     body2: {
                         fontSize: '12px',
-                        textTransform: 'capitalize',
                     },
                 },
             }),
