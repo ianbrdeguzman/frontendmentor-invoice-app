@@ -1,26 +1,19 @@
-interface ClientAddress {
+export interface Address {
     city: string;
     country: string;
     postCode: string;
     street: string;
 }
 
-interface Items {
+export interface Items {
     name: string;
     price: number;
     quantity: number;
     total: number;
 }
 
-interface SenderAddress {
-    city: string;
-    country: string;
-    postCode: string;
-    street: string;
-}
-
 export interface Invoice {
-    clientAddress: ClientAddress;
+    clientAddress: Address;
     clientEmail: string;
     clientName: string;
     createdAt: string;
@@ -28,7 +21,7 @@ export interface Invoice {
     id: string;
     items: Items[];
     paymentDue: string;
-    senderAddress: SenderAddress;
+    senderAddress: Address;
     status: string;
     total: number;
 }
@@ -41,29 +34,8 @@ export interface InvoiceSlice {
     filter: string;
 }
 
-interface ClientAddress {
-    city: string;
-    country: string;
-    postCode: string;
-    street: string;
-}
-
-interface Items {
-    name: string;
-    price: number;
-    quantity: number;
-    total: number;
-}
-
-interface SenderAddress {
-    city: string;
-    country: string;
-    postCode: string;
-    street: string;
-}
-
 export interface InvoiceCardProps {
-    clientAddress: ClientAddress;
+    clientAddress: Address;
     clientEmail: string;
     clientName: string;
     createdAt: string;
@@ -71,7 +43,7 @@ export interface InvoiceCardProps {
     id: string;
     items: Items[];
     paymentDue: string;
-    senderAddress: SenderAddress;
+    senderAddress: Address;
     status: string;
     total: number;
 }

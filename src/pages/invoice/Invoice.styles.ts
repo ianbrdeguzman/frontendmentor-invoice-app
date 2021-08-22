@@ -40,43 +40,56 @@ const useStyles = makeStyles<Theme, Props>((theme: Theme) =>
             backgroundColor: (props) =>
                 props.darkMode ? '#1e2139' : '#ffffff',
         },
-        status: {
-            textTransform: 'capitalize',
-            minWidth: '100px',
-            maxWidth: '100px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '.7rem 0',
-            borderRadius: '.3rem',
-            color: (props) =>
-                props.status === 'paid'
-                    ? 'rgb(51, 214, 159)'
-                    : props.status === 'pending'
-                    ? 'rgb(255, 143, 0)'
-                    : 'rgb(223, 227, 250)',
+        content: {
+            padding: '1rem',
+            borderRadius: '.5rem',
             backgroundColor: (props) =>
-                props.status === 'paid'
-                    ? 'rgba(51, 214, 159, 0.1)'
-                    : props.status === 'pending'
-                    ? 'rgba(255, 143, 0, 0.1)'
-                    : 'rgba(223, 227, 250, 0.1)',
+                props.darkMode ? '#1e2139' : '#ffffff',
             [theme.breakpoints.down('sm')]: {
-                gridArea: 'status',
-                marginLeft: 'auto',
+                display: 'grid',
+                gridTemplateAreas: `
+                'id id'
+                'address address'
+                'date bill'
+                'email email'`,
+            },
+            [theme.breakpoints.up('md')]: {
+                display: 'grid',
+                gridTemplateAreas: `
+                'id id address'
+                'date bill email'`,
             },
         },
-        box: {
-            width: '0.5rem',
-            height: '0.5rem',
-            marginRight: '0.5rem',
-            borderRadius: '50%',
-            backgroundColor: (props) =>
-                props.status === 'paid'
-                    ? 'rgb(51, 214, 159)'
-                    : props.status === 'pending'
-                    ? 'rgb(255, 143, 0)'
-                    : 'rgb(223, 227, 250)',
+        idContainer: {
+            marginBottom: '1rem',
+            gridArea: 'id',
+        },
+        id: {
+            fontWeight: 'bold',
+            [theme.breakpoints.down('sm')]: {
+                gridArea: 'id',
+            },
+        },
+        span: {
+            color: 'rgb(126, 136, 195)',
+        },
+        dateContainer: {
+            margin: '1rem 0',
+            gridArea: 'date',
+        },
+        createdDate: {
+            marginBottom: '1rem',
+        },
+        mainText: {
+            fontWeight: 'bold',
+        },
+        billContainer: {
+            margin: '1rem 0',
+            gridArea: 'bill',
+        },
+        emailContainer: {
+            margin: '1rem 0',
+            gridArea: 'email',
         },
     })
 );
