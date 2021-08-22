@@ -23,7 +23,7 @@ const useWindowSize = () => {
 
         handleResize();
 
-        return () => window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     return size;
