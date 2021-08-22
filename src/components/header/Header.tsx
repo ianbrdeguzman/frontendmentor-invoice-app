@@ -24,7 +24,7 @@ const Header = () => {
                             className={classes.logoContainer}
                         >
                             <img
-                                src='./images/logo.svg'
+                                src='/images/logo.svg'
                                 alt='logo'
                                 width='28'
                                 height='26'
@@ -53,7 +53,7 @@ const Header = () => {
                     </Box>
                     <Box m={2}>
                         <Avatar
-                            src='./images/avatar.png'
+                            src='/images/avatar.png'
                             alt='avatar'
                             className={classes.avatar}
                         />
